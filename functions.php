@@ -50,6 +50,7 @@ function amp_setup() {
 	// populate them via the customizer
 	register_nav_menus( array(
 		'primary' => esc_html__( 'Header', 'amp' ),
+		'social' => esc_html__( 'Social', 'amp' ),
 	) );
 
 	/*
