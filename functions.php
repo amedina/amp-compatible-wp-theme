@@ -46,8 +46,10 @@ function amp_setup() {
 	add_theme_support( 'post-thumbnails' );
 
 	// This theme uses wp_nav_menu() in one location.
+	// Here we just register the menu(s), which means we can
+	// populate them via the customizer
 	register_nav_menus( array(
-		'menu-1' => esc_html__( 'Primary', 'amp' ),
+		'primary' => esc_html__( 'Header', 'amp' ),
 	) );
 
 	/*
@@ -179,10 +181,29 @@ add_action( 'widgets_init', 'amp_widgets_init' );
 function amp_scripts() {
 	// enqueue Google Fonts: PT Serif, Sans Pro
 	wp_enqueue_style('amp-theme-fonts',amp_fonts_url());
-
+	// enqueue Site's (generated from sass) style sheet
 	wp_enqueue_style( 'amp-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'amp-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+	// Enqueue scripts to handle navigation
+	// TODO(@amedina): remove dependency with jQuery and custom JS
+	wp_enqueue_script(
+		'amp-navigation',
+		get_template_directory_uri() . '/js/navigation.js',
+		array('jquery'), // brings jquery version bundled with WP
+		'20151215',
+		true
+	);
+	// Need to define translatable strings for screen readers in functions.php,
+	// and then pass the strings to the JavaScript file in the variable
+	// called ampScreenReaderText.
+	wp_localize_script(
+		'amp-navigation',
+		'ampScreenReaderText',
+		array(
+			'expand' => __( 'Expand child menu', 'amp' ),
+			'collapse' => __( 'Collapse child menu', 'amp' )
+		)
+	);
 
 	wp_enqueue_script( 'amp-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 

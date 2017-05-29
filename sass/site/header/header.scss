@@ -1,6 +1,7 @@
 .header-image {
 	max-height: 60vh;
 	overflow: hidden;
+
 	img {
 		display: block;
 		width: 100vw;
@@ -27,7 +28,7 @@
 	img {
 		display: block;
 		height: 65px;
-		with: auto;
+		width: auto;
 	}
 }
 
@@ -78,3 +79,8 @@
     width: 55%;
   }
 }
+
+/*
+ * Header menu styling
+ */
+@import "header-menu";
