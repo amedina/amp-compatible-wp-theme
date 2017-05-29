@@ -1,14 +1,14 @@
 /*!
 Theme Name: AMP Compatible Theme
-Theme URI: http://underscores.me/
+Theme URI: https://github.com/amedina/amp-compatible-wp-theme
 Author: Alberto Medina
 Author URI: http://google.com
-Description: AMP Compatible WP Theme
+Description: Simple AMP-Compatible WP Theme
 Version: 1.0.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: amp
-Tags:
+Tags: amp
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
@@ -86,14 +86,14 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 @import "modules/clearings";
 
 /*--------------------------------------------------------------
-# Widgets
---------------------------------------------------------------*/
-@import "site/secondary/widgets";
-
-/*--------------------------------------------------------------
 # Content
 --------------------------------------------------------------*/
 @import "site/site";
+
+/*--------------------------------------------------------------
+# Widgets
+--------------------------------------------------------------*/
+@import "site/secondary/widgets";
 
 /*--------------------------------------------------------------
 # Infinite scroll
