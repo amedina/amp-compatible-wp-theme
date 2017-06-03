@@ -24,18 +24,22 @@ function amp_posted_on() {
 		esc_html( get_the_modified_date() )
 	);
 
-	$posted_on = sprintf(
-		esc_html_x( 'Posted on %s', 'post date', 'amp' ),
-		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
-	);
-
 	$byline = sprintf(
-		esc_html_x( 'by %s', 'post author', 'amp' ),
+		esc_html_x( 'Written by %s', 'post author', 'amp' ),
 		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
 	);
 
-	echo '<span class="posted-on">' . $posted_on . '</span><span class="byline"> ' . $byline . '</span>'; // WPCS: XSS OK.
+	$posted_on = sprintf(
+		esc_html_x( 'Published on %s', 'post date', 'amp' ),
+		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
+	);
 
+	echo '<span class="byline">' . $byline . '</span> <span class="posted-on"> ' . $posted_on . '</span>'; // WPCS: XSS OK.
+
+	// Comments info and link
+	amp_num_comments();
+	// Edit post link
+	amp_get_edit_post_link();
 }
 endif;
 
@@ -44,14 +48,8 @@ if ( ! function_exists( 'amp_entry_footer' ) ) :
  * Prints HTML with meta information for the categories, tags and comments.
  */
 function amp_entry_footer() {
-	// Hide category and tag text for pages.
+	// Hide tag text for pages.
 	if ( 'post' === get_post_type() ) {
-		/* translators: used between list items, there is a space after the comma */
-		$categories_list = get_the_category_list( esc_html__( ', ', 'amp' ) );
-		if ( $categories_list && amp_categorized_blog() ) {
-			printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'amp' ) . '</span>', $categories_list ); // WPCS: XSS OK.
-		}
-
 		/* translators: used between list items, there is a space after the comma */
 		$tags_list = get_the_tag_list( '', esc_html__( ', ', 'amp' ) );
 		if ( $tags_list ) {
@@ -59,25 +57,37 @@ function amp_entry_footer() {
 		}
 	}
 
-	if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
-		echo '<span class="comments-link">';
+}
+endif;
+
+function amp_the_category_list() {
+	/* translators: used between list items, there is a space after the comma */
+	$categories_list = get_the_category_list( esc_html__( ', ', 'amp' ) );
+	if ( $categories_list && amp_categorized_blog() ) {
+		printf( '<span class="cat-links">' . esc_html__( '%1$s', 'amp' ) . '</span>', $categories_list ); // WPCS: XSS OK.
+	}
+}
+
+function amp_num_comments() {
+	if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
+		echo ' <span class="comments-link">';
 		/* translators: %s: post title */
 		comments_popup_link( sprintf( wp_kses( __( 'Leave a Comment<span class="screen-reader-text"> on %s</span>', 'amp' ), array( 'span' => array( 'class' => array() ) ) ), get_the_title() ) );
 		echo '</span>';
 	}
+}
 
+function amp_get_edit_post_link() {
 	edit_post_link(
 		sprintf(
-			/* translators: %s: Name of current post */
+		/* translators: %s: Name of current post */
 			esc_html__( 'Edit %s', 'amp' ),
 			the_title( '<span class="screen-reader-text">"', '"</span>', false )
 		),
-		'<span class="edit-link">',
+		' <span class="edit-link">',
 		'</span>'
 	);
 }
-endif;
-
 /**
  * Returns true if a blog has more than 1 category.
  *
@@ -120,3 +130,18 @@ function amp_category_transient_flusher() {
 }
 add_action( 'edit_category', 'amp_category_transient_flusher' );
 add_action( 'save_post',     'amp_category_transient_flusher' );
+
+/**
+ * Post navigation (previous / next post) for single posts.
+ * Accounting for accessibility.
+ */
+function amp_post_navigation() {
+	the_post_navigation( array(
+		'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next', 'amp' ) . '</span> ' .
+		               '<span class="screen-reader-text">' . __( 'Next post:', 'amp' ) . '</span> ' .
+		               '<span class="post-title">%title</span>',
+		'prev_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Previous', 'amp' ) . '</span> ' .
+		               '<span class="screen-reader-text">' . __( 'Previous post:', 'amp' ) . '</span> ' .
+		               '<span class="post-title">%title</span>',
+	) );
+}
