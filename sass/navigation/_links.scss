@@ -33,3 +33,9 @@ a {
 		}
 	}
 }
+
+// To prevent contrast issue with theme black background
+// for the footer
+.site-info a {
+	color: #fff;
+}
