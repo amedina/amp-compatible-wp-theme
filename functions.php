@@ -205,6 +205,14 @@ function amp_scripts() {
 			'collapse' => __( 'Collapse child menu', 'amp' )
 		)
 	);
+	// Enqueue functions defined in my custom functions.js file
+	wp_enqueue_script(
+		'amp-functions', get_template_directory_uri() . '/js/functions.js',
+		array('jquery'),
+		'20170603',
+		true // loads in the footer
+	);
+
 
 	wp_enqueue_script( 'amp-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
