@@ -22,7 +22,7 @@
 		<div class="site-info">
 			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'amp' ) ); ?>"><?php printf( esc_html__( 'Powered by %s', 'amp' ), 'WordPress' ); ?></a>
 			<span class="sep"> | </span>
-			<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'amp' ), 'amp', '<a href="https://automattic.com/" rel="designer">Alberto Medina</a>' ); ?>
+			<?php printf( esc_html__( 'Theme: %1$s by %2$s', 'amp' ), 'amp', '<a href="<?php echo esc_url( __( \'https://automattic.com/\', \'amp\' ) ); ?>" rel="designer">Alberto Medina</a>' ); ?>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->

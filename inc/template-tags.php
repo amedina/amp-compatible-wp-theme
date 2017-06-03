@@ -70,7 +70,7 @@ function amp_the_category_list() {
 
 function amp_num_comments() {
 	if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
-		echo ' <span class="comments-link">';
+		echo ' <span class="comments-link"><span class="extra">Discussion</span>';
 		/* translators: %s: post title */
 		comments_popup_link( sprintf( wp_kses( __( 'Leave a Comment<span class="screen-reader-text"> on %s</span>', 'amp' ), array( 'span' => array( 'class' => array() ) ) ), get_the_title() ) );
 		echo '</span>';
@@ -84,7 +84,7 @@ function amp_get_edit_post_link() {
 			esc_html__( 'Edit %s', 'amp' ),
 			the_title( '<span class="screen-reader-text">"', '"</span>', false )
 		),
-		' <span class="edit-link">',
+		' <span class="edit-link"><span class="extra">Admin</span>',
 		'</span>'
 	);
 }
