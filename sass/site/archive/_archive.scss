@@ -1,0 +1,75 @@
+/**
+ * Styles for archive pages
+ */
+
+.archive-view {
+  background-color: #ccc;
+
+  .post,
+  .page{
+    position: relative;
+    background: white;
+  }
+
+  .post__content {
+    padding: 2em 2em 3em;
+    border: 1px solid grey;
+  }
+
+  @media screen and (min-width: $query__medium) {
+    &.has-sidebar {
+      .site-content {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      .page-header {
+        width: 100%;
+        flex: 1 0 100%;
+      }
+      .content-area {
+        width: $size__ratio-large;
+      }
+      .widget-area {
+        width: $size__ratio-small;
+      }
+    }
+  }
+}
+
+.page-header {
+  font-family: $font__sans;
+}
+
+.page-title {
+  margin: 0 0 .5em;
+}
+
+.archive-description {
+  margin: -1 0 2em;
+}
+
+.continue-reading {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	font-family: $font__sans;
+    border-bottom: 1px solid grey;
+    border-right: 1px solid grey;
+
+	a {
+		display: block;
+		padding: .5em 1em;
+		font-size: 90%;
+		text-decoration: none;
+		background: hsl(0, 0%, 85%);
+
+		&:focus,
+		&:hover {
+			color: white;
+			background: $color__interactive;
+		}
+	}
+
+}
+

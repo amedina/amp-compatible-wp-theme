@@ -40,7 +40,13 @@ get_header(); ?>
 
 			endwhile;
 
-			the_posts_navigation();
+			the_posts_pagination(
+			    array(
+			       'prev_text' => __('Newer', 'amp'),
+			       'next_text' => __('Older', 'amp'),
+                   'before_page_number' => '<span class="screen-reader-text">' . __( 'Page', 'amp') . '</span>',
+                )
+            );
 
 		else :
 
