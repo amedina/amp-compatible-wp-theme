@@ -22,6 +22,7 @@ function amp_body_classes( $classes ) {
 	// Adds a class of hfeed to non-singular pages.
 	if ( ! is_singular() ) {
 		$classes[] = 'hfeed';
+		$classes[] = 'archive-view';
 	}
 
 	// Adds a class of has-sidebar to posts/pages that have an active sidebar

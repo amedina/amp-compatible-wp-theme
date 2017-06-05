@@ -145,3 +145,19 @@ function amp_post_navigation() {
 		               '<span class="post-title">%title</span>',
 	) );
 }
+
+/**
+ * Customize symbol at the end of an excerpt
+ */
+function amp_excerpt_more() {
+	return "...";
+}
+add_filter("excerpt_more", "amp_excerpt_more");
+
+/**
+ * Customize length of an excerpt
+ */
+function amp_excerpt_length( $length ) {
+	return 100;
+}
+add_filter("excerpt_length", "amp_excerpt_length");
