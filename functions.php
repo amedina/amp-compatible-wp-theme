@@ -173,6 +173,16 @@ function amp_widgets_init() {
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
 	) );
+	// For custom page layout
+	register_sidebar( array(
+		'name'          => esc_html__( 'Page Sidebar', 'amp' ),
+		'id'            => 'sidebar-2',
+		'description'   => esc_html__( 'Add page widgets here.', 'amp' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
 }
 add_action( 'widgets_init', 'amp_widgets_init' );
 
