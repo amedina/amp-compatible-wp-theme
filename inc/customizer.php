@@ -49,9 +49,9 @@ function amp_customize_register( $wp_customize ) {
 	// Create excerpt or full content settings
 	$wp_customize->add_setting(	'markup',
 		array(
-			'default'			=> 'standard',
+			'default'			=> 'Standard',
 			'type'				=> 'theme_mod',
-			'sanitize_callback' => 'amp_sanitize_build_mode', // Sanitization function appears further down
+			'sanitize_callback' => 'amp_sanitize_build_mode',
 			'transport'			=> 'postMessage'
 		)
 	);
@@ -63,8 +63,8 @@ function amp_customize_register( $wp_customize ) {
 			'label'		=> __( 'Theme generates Markup', 'amp' ),
 			'section'	=> 'build_mode',
 			'choices'	=> array(
-				'standard'		=> __( 'Standard (default)', 'amp' ),
-				'amp'	=> __( 'AMP', 'amp' )
+				'Standard'		=> __( 'Standard (default)', 'amp' ),
+				'AMP'	=> __( 'AMP', 'amp' )
 			),
 			'settings'	=> 'markup' // Matches setting ID from above
 		)
@@ -142,8 +142,8 @@ endif;
  * sanitization callback, which will ensure that no unsafe data is stored in the database.
  */
 function amp_sanitize_build_mode( $value ) {
-	if ( ! in_array( $value, array( 'standard', 'amp' ) ) ) {
-		$value = 'standard';
+	if ( ! in_array( $value, array( 'Standard', 'AMP' ) ) ) {
+		$value = 'Standard';
 	}
 	return $value;
 }

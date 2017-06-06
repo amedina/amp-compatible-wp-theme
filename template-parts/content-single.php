@@ -13,10 +13,11 @@
 	<header class="entry-header">
 		<?php amp_the_category_list(); ?>
         <?php
-        $build_mode = get_theme_mod( 'markup');
-        $before = '<h1 class="entry-title"><span style="color:red">Generating ' . $build_mode . ' HTML</span>';
 		if ( is_single() ) :
-			the_title( $before, '</h1>' );
+			$build_mode = get_theme_mod( 'markup');
+			$before = '<h1 class="entry-title">';
+			$after = '<h4><span style="color:red">Generating ' . $build_mode . ' HTML</span></h4></h1>';
+			the_title( $before, $after );
 		else :
 			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
 		endif;
