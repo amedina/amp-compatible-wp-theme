@@ -861,7 +861,8 @@ a:hover, a:active {
 }
 
 @media screen and (min-width: 900px) {
-	.single.has-sidebar .hentry {
+	.single.has-sidebar .hentry,
+	.page .hentry {
 		display: -webkit-box;
 		display: -ms-flexbox;
 		display: flex;
@@ -871,16 +872,19 @@ a:hover, a:active {
 		    -ms-flex-pack: justify;
 		        justify-content: space-between;
 	}
-	.single.has-sidebar .hentry .entry-header {
+	.single.has-sidebar .hentry .entry-header,
+	.page .hentry .entry-header {
 		width: 100%;
 		-webkit-box-flex: 1;
 		    -ms-flex: 1 0 100%;
 		        flex: 1 0 100%;
 	}
-	.single.has-sidebar .hentry .post-content {
+	.single.has-sidebar .hentry .post-content,
+	.page .hentry .post-content {
 		width: 60%;
 	}
-	.single.has-sidebar .hentry .widget-area {
+	.single.has-sidebar .hentry .widget-area,
+	.page .hentry .widget-area {
 		width: 30%;
 	}
 }
@@ -1400,10 +1404,13 @@ button.dropdown-toggle {
 ## Widgets
 --------------------------------------------------------------*/
 .widget {
+	margin-top: 1.5em;
+}
+
+.widget {
 	margin: 0 0 2em;
 	padding: 0 0 2em;
 	font-family: "Source Sans Pro", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
-	max-width: 100%;
 	/* Make sure select elements fit in widgets. */
 }
 
@@ -1713,10 +1720,13 @@ button.dropdown-toggle {
 # Widgets
 --------------------------------------------------------------*/
 .widget {
+	margin-top: 1.5em;
+}
+
+.widget {
 	margin: 0 0 2em;
 	padding: 0 0 2em;
 	font-family: "Source Sans Pro", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
-	max-width: 100%;
 	/* Make sure select elements fit in widgets. */
 }
 
