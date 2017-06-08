@@ -13,16 +13,16 @@
 	<header class="entry-header">
 		<?php amp_the_category_list(); ?>
         <?php
-		if ( is_single() ) :
-			$build_mode = get_theme_mod( 'markup');
-			$before = '<h1 class="entry-title">';
-			$after = '<h4><span style="color:red">Generating ' . $build_mode . ' HTML</span></h4></h1>';
-			the_title( $before, $after );
-		else :
-			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-		endif;
+//		if ( is_single() ) :
+//			$build_mode = get_theme_mod( 'markup');
+//			$before = '<h1 class="entry-title">';
+//			$after = '<h4><span style="color:red">Generating ' . $build_mode . ' HTML</span></h4></h1>';
+//			the_title( $before, $after );
+//		else :
+//			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
+//		endif;
 
-		if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
+        if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
 		<div class="entry-meta">
 			<?php amp_posted_on(); ?>
 		</div><!-- .entry-meta -->
